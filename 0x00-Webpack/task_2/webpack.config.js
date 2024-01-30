@@ -1,5 +1,4 @@
 const path = require('path');
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 module.exports = {
 	mode: 'production',
@@ -10,6 +9,9 @@ module.exports = {
 		path: path.resolve(__dirname, 'public'),
 		filename: 'bundle.js',
 	},
+	performance: {
+		maxAssetSize: 1000000,
+	},
 	module: {
 		rules: [
 			{
@@ -18,23 +20,16 @@ module.exports = {
 			},
 			{
 				test: /\.(jpe?g|png|gif|svg)$/i,
-				type: 'asset',
-			},
-			{
-				test: /\.(jpe?g|png|gif|svg)$/i,
-				loader: ImageMinimizerPlugin.loader,
-				enforce: 'pre',
-				options: {
-					generator: [
-						{
-							preset: 'webp',
-							implementation: ImageMinimizerPlugin.imageminGenerate,
-							options: {
-								plugins: ['imagemin-webp'],
-							},
+				type: 'asset/resource',
+				use: [
+					{
+						loader: ['file-loader', 'image-webpack-loader'],
+						options: {
+							bypassOnDebug: true,
+							disable: true,
 						},
-					],
-				},
+					},
+				],
 			},
 		],
 	},

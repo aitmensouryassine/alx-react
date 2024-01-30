@@ -1,13 +1,15 @@
 .App {
 	font-size: 20px;
-	font-family: sans-serif;
-
 	--main-color: #e0354b;
 }
 .App-header {
 	display: flex;
 	align-items: center;
 	border-bottom: 5px solid var(--main-color);
+}
+.App-header img {
+	width: 300px;
+	height: 300px;
 }
 .App-header h1 {
 	color: var(--main-color);

@@ -1,29 +1,38 @@
-const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
-	entry: {
-		main: path.resolve(__dirname, './src/index.js'),
-	},
+	entry: './src/index.js',
 	output: {
-		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
 	},
+	devServer: {
+		hot: true,
+	},
+	devtool: 'inline-source-map',
+
 	module: {
 		rules: [
 			{
-				test: /\.css$/, // files ending with .css
-				use: ['style-loader', 'css-loader'], // use style and css loaders
+				test: /\.css$/i,
+				use: ['style-loader', 'css-loader'],
 			},
 			{
 				test: /\.(png|svg|jpg|jpeg|gif)$/i,
-				type: 'asset/resource',
+				use: [
+					'file-loader',
+					{
+						loader: 'image-webpack-loader',
+					},
+				],
 			},
 		],
 	},
-	devtool: 'inline-source-map', // enable inline source maps
-	devServer: {
-		contentBase: './dist', // serve content from the 'dist' directory
-		hot: true, // enable hot module replacement
-	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			name: 'index.html',
+			inject: false,
+			template: './dist/index.html',
+		}),
+	],
 };

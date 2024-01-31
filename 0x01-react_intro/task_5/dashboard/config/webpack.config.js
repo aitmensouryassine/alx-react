@@ -1,16 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-	mode: 'development',
 	entry: './src/index.js',
 	output: {
+		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
 	},
-	devServer: {
-		hot: true,
-	},
-	devtool: 'inline-source-map',
-
 	module: {
 		rules: [
 			{
@@ -18,21 +13,23 @@ module.exports = {
 				use: ['style-loader', 'css-loader'],
 			},
 			{
-				test: /\.(png|svg|jpg|jpeg|gif)$/i,
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				type: 'asset/resource',
 				use: [
 					'file-loader',
 					{
 						loader: 'image-webpack-loader',
+						options: {
+							bypassOnDebug: true,
+							disable: true,
+						},
 					},
 				],
 			},
 		],
 	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			name: 'index.html',
-			inject: false,
-			template: './dist/index.html',
-		}),
-	],
+	devServer: {
+		hot: true,
+	},
+	devtool: 'inline-source-map',
 };

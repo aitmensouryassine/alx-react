@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import App from './App';
+import App from './App/App';
 
 describe('<App />', () => {
 	it('App renders without crashing', () => {

@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import Notifications from './Notifications';
+import Notifications from './Notifications/Notifications';
 
 describe('<Notifications', () => {
 	it('Notifications renders without crashing', () => {

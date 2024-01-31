@@ -1,4 +1,4 @@
-import { getFullYear, getFooterCopy, getLatestNotification } from './utils';
+import { getFullYear, getFooterCopy, getLatestNotification } from './utils/utils';
 
 test('Get full year', () => {
 	const year = getFullYear();

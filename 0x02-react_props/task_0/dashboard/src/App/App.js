@@ -12,7 +12,6 @@ function App() {
 			<div className='App'>
 				<Header />
 				<div className='App-body'>
-					<p>Login to access the full dashboard</p>
 					<Login />
 				</div>
 				<Footer />

@@ -13,10 +13,7 @@ function App({ isLoggedIn }) {
 			<Notifications />
 			<div className='App'>
 				<Header />
-				<div className='App-body'>
-					<p>Login to access the full dashboard</p>
-					{isLoggedIn ? <CourseList /> : <Login />}
-				</div>
+				<div className='App-body'>{isLoggedIn ? <CourseList /> : <Login />}</div>
 				<Footer />
 			</div>
 		</>

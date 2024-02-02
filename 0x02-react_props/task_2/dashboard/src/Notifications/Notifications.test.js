@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Notifications from './Notifications/Notifications';
+import Notifications from './Notifications';
+import NotificationItem from './NotificationItem';
 
 describe('<Notifications', () => {
 	it('Notifications renders without crashing', () => {
@@ -9,7 +10,7 @@ describe('<Notifications', () => {
 	});
 	it('Notifications renders three list items', () => {
 		const notifications = shallow(<Notifications />);
-		const list = notifications.find('li');
+		const list = notifications.find(NotificationItem);
 		expect(list.length).toBe(3);
 	});
 	it('Notifications renders the text Here is the list of notifications', () => {
@@ -17,5 +18,10 @@ describe('<Notifications', () => {
 		const text = notifications.text();
 		const hasText = text.includes('Here is the list of notifications');
 		expect(hasText).toBe(true);
+	});
+	it('first NotificationItem element renders the right html', () => {
+		const notifications = shallow(<Notifications />);
+		const first = notifications.find(NotificationItem).first();
+		expect(first.html()).toBe('<li data-notification-type="default">New course available</li>');
 	});
 });

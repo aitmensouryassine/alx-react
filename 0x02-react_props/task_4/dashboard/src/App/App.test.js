@@ -5,6 +5,7 @@ import Notifications from '../Notifications/Notifications';
 import Header from '../Header/Header';
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
+import CourseList from '../CourseList/CourseList';
 
 describe('<App />', () => {
 	it('App renders without crashing', () => {
@@ -29,6 +30,24 @@ describe('<App />', () => {
 	it('App contain Footer component', () => {
 		const app = shallow(<App />);
 		const component = app.find(Footer);
+		expect(component).toHaveLength(1);
+	});
+	it('CourseList is not displayed', () => {
+		const app = shallow(<App />);
+		const component = app.find(CourseList);
+		expect(component).toHaveLength(0);
+	});
+});
+
+describe('<App isLoggedIn=true', () => {
+	it('Login is not displayed', () => {
+		const app = shallow(<App isLoggedIn={true} />);
+		const component = app.find(Login);
+		expect(component).toHaveLength(0);
+	});
+	it('CourseList is displayed', () => {
+		const app = shallow(<App isLoggedIn={true} />);
+		const component = app.find(CourseList);
 		expect(component).toHaveLength(1);
 	});
 });

@@ -1,7 +1,6 @@
 .App-header {
 	display: flex;
 	align-items: center;
-	border-bottom: 5px solid var(--main-color);
 }
 .App-header img {
 	width: 300px;

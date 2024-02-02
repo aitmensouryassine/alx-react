@@ -1,6 +1,12 @@
+.menuItem {
+	width: 100%;
+	text-align: right;
+}
 .Notifications {
 	border: 2px dashed red;
-	padding: 2rem;
+	padding: 1rem;
+	float: right;
+	clear: both;
 }
 
 [data-notification-type|='default'] {

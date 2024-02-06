@@ -1,0 +1,11 @@
+.App {
+	font-size: 20px;
+	--main-color: #e0354b;
+}
+
+.App-body {
+	padding: 3rem;
+	height: 50vh;
+
+	border-top: 5px solid var(--main-color);
+}

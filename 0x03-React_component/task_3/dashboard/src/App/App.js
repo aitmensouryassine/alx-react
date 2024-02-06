@@ -7,6 +7,8 @@ import Login from '../Login/Login';
 import Notifications from '../Notifications/Notifications';
 import CourseList from '../CourseList/CourseList';
 import { getLatestNotification } from '../utils/utils';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
+import BodySection from '../BodySection/BodySection';
 
 const listCourses = [
 	{ id: 1, name: 'ES6', credit: 60 },
@@ -60,8 +62,25 @@ class App extends Component {
 				<div className='App'>
 					<Header />
 					<div className='App-body'>
-						{this.props.isLoggedIn ? <CourseList listCourses={listCourses} /> : <Login />}
+						{this.props.isLoggedIn ? (
+							<BodySectionWithMarginBottom title='Course list'>
+								<CourseList listCourses={listCourses} />
+							</BodySectionWithMarginBottom>
+						) : (
+							<BodySectionWithMarginBottom title='Log in to continue'>
+								<Login />
+							</BodySectionWithMarginBottom>
+						)}
 					</div>
+					<BodySection title='News from the School'>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus blandit enim varius cursus
+							luctus. Proin quis erat vitae ante accumsan lobortis. Etiam et gravida lorem. Cras faucibus
+							id ligula a cursus. Sed porta mauris non fringilla lacinia. Praesent sit amet leo tellus.
+							Fusce vestibulum, massa eget egestas aliquet, lacus orci euismod purus, sed ullamcorper erat
+							mauris a tortor.
+						</p>
+					</BodySection>
 					<Footer />
 				</div>
 			</>

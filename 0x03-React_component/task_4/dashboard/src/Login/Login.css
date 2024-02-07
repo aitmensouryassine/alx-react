@@ -1,0 +1,4 @@
+.App-body label:nth-child(5),
+.App-body button {
+	margin-left: 10px;
+}

@@ -9,7 +9,7 @@ function WithLogging(WrappedComp) {
 			console.log(`Component ${getCompName(WrappedComp)} is going to unmount`);
 		}
 		render() {
-			return WrappedComp;
+			return <WrappedComp {...this.props} />;
 		}
 	}
 	WithLogging.displayName = `WithLogging(${getCompName(WrappedComp)})`;
@@ -17,7 +17,7 @@ function WithLogging(WrappedComp) {
 }
 
 function getCompName(WrappedComp) {
-	return WrappedComp.type.name || 'Component';
+	return WrappedComp.displayName || WrappedComp.name || 'Component';
 }
 
 export default WithLogging;

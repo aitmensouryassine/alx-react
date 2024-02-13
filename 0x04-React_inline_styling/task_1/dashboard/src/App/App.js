@@ -33,6 +33,24 @@ const listNotifications = [
 	},
 ];
 
+const main_color = '#e0354b';
+const styles = new StyleSheet.create({
+	app: {
+		fontSize: '20px',
+	},
+	app_body: {
+		padding: '3rem',
+		height: '50vh',
+		borderTop: `5px solid ${main_color}`,
+	},
+	footer: {
+		borderTop: `5px solid ${main_color}`,
+		display: 'flex',
+		justifyContent: 'center',
+		fontStyle: 'italic',
+	},
+});
+
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -87,24 +105,6 @@ class App extends Component {
 		);
 	}
 }
-
-const main_color = '#e0354b';
-const styles = new StyleSheet.create({
-	app: {
-		fontSize: '20px',
-	},
-	app_body: {
-		padding: '3rem',
-		height: '50vh',
-		borderTop: `5px solid ${main_color}`,
-	},
-	footer: {
-		borderTop: `5px solid ${main_color}`,
-		display: 'flex',
-		justifyContent: 'center',
-		fontStyle: 'italic',
-	},
-});
 
 App.defaultProps = {
 	isLoggedIn: false,

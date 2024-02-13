@@ -10,7 +10,10 @@ class Notifications extends Component {
 		super(props);
 		this.closeHandler = this.closeHandler.bind(this);
 		this.markAsRead = this.markAsRead.bind(this);
+		/* this.displayDrawer = this.props.displayDrawer; */
 	}
+
+	displayDrawer = this.props.displayDrawer;
 
 	shouldComponentUpdate(nextProps) {
 		if (nextProps.listNotifications.length > this.props.listNotifications.length) {
@@ -21,17 +24,27 @@ class Notifications extends Component {
 
 	closeHandler() {
 		console.log('Close button has been clicked');
+		/* this.displayDrawer = false;
+		this.forceUpdate(); */
 	}
 
 	markAsRead(id) {
 		console.log(`Notification ${id} has been marked as read`);
 	}
 
+	handleHover() {
+		this.displayDrawer = true;
+		this.forceUpdate();
+	}
+
 	render() {
 		return (
 			<>
-				<div className={['menuItem', css(styles.menuItem)].join(' ')}>Your notifications</div>
-				{this.props.displayDrawer ? (
+				{!this.props.displayDrawer ? (
+					<div /* onClick={this.handleHover} */ className={['menuItem', css(styles.menuItem)].join(' ')}>
+						Your notifications
+					</div>
+				) : (
 					<div className={['Notifications', css(styles.notifications)].join(' ')}>
 						<button
 							className={css(styles.btn)}
@@ -62,16 +75,42 @@ class Notifications extends Component {
 							<p>No new notification for now</p>
 						)}
 					</div>
-				) : null}
+				)}
 			</>
 		);
 	}
 }
 
+const opcityKeyFrames = {
+	'0%': {
+		opacity: 0.5,
+	},
+	'100%': {
+		opacity: 1,
+	},
+};
+const trasnlateYKeyFrames = {
+	'0%': {
+		transform: 'translateY(0)',
+	},
+	'50%': {
+		transform: 'translateY(-5px)',
+	},
+	'100%': {
+		transform: 'translateY(5px)',
+	},
+};
+
 const styles = StyleSheet.create({
 	menuItem: {
-		width: '100%',
-		textAlign: 'right',
+		float: 'right',
+		backgroundColor: '#fff8f8',
+		':hover': {
+			cursor: 'pointer',
+			animationName: [opcityKeyFrames, trasnlateYKeyFrames],
+			animationDuration: '0.5s',
+			animationIterationCount: 3,
+		},
 	},
 	notifications: {
 		backgroundColor: 'white',

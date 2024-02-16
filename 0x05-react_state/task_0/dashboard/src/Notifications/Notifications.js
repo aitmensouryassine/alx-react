@@ -8,7 +8,6 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 class Notifications extends Component {
 	constructor(props) {
 		super(props);
-		this.closeHandler = this.closeHandler.bind(this);
 		this.markAsRead = this.markAsRead.bind(this);
 	}
 
@@ -20,11 +19,6 @@ class Notifications extends Component {
 			return true;
 		}
 		return false;
-	}
-
-	closeHandler() {
-		console.log('Close button has been clicked');
-		this.props.handleHideDrawer();
 	}
 
 	markAsRead(id) {
@@ -46,7 +40,7 @@ class Notifications extends Component {
 						<button
 							className={css(styles.btn)}
 							aria-label='Close'
-							onClick={this.closeHandler}
+							onClick={this.props.handleHideDrawer}
 							style={{ float: 'right' }}
 						>
 							<img className={css(styles.closeIcon)} src={closeIcon} alt='Close notifications' />

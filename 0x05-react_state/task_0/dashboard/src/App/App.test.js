@@ -59,12 +59,10 @@ describe('<App />', () => {
 		wrapper.unmount();
 	});
 
-	it('the default state for displayDrawer is false', () => {
+	it('the default state for displayDrawer is false, after calling handleDisplayDrawer, the state should now be true', () => {
 		const app = shallow(<App />);
 		expect(app.state().displayDrawer).toBe(false);
-	});
-	it('after calling handleDisplayDrawer, the state should now be true', () => {
-		const app = shallow(<App />);
+
 		app.instance().handleDisplayDrawer();
 		expect(app.state().displayDrawer).toBe(true);
 	});

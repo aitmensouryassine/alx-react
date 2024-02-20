@@ -26,13 +26,11 @@ class Notifications extends Component {
 	}
 
 	render() {
+		const { handleDisplayDrawer, handleHideDrawer } = this.props;
 		return (
 			<>
 				{!this.props.displayDrawer ? (
-					<div
-						className={['menuItem', css(styles.menuItem)].join(' ')}
-						onClick={this.props.handleDisplayDrawer}
-					>
+					<div className={['menuItem', css(styles.menuItem)].join(' ')} onClick={handleDisplayDrawer}>
 						Your notifications
 					</div>
 				) : (
@@ -40,7 +38,7 @@ class Notifications extends Component {
 						<button
 							className={css(styles.btn)}
 							aria-label='Close'
-							onClick={this.props.handleHideDrawer}
+							onClick={handleHideDrawer}
 							style={{ float: 'right' }}
 						>
 							<img className={css(styles.closeIcon)} src={closeIcon} alt='Close notifications' />

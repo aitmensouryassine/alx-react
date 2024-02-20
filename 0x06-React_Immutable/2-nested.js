@@ -1,7 +1,5 @@
-import { Map } from 'immutable';
+import { fromJS } from 'immutable';
 
-export default function accessImmutableObject(object, array) {
-	const immObj = Map(object);
+const accessImmutableObject = (object, array) => fromJS(object).getIn(array);
 
-	return immObj.getIn(array);
-}
+export default accessImmutableObject;

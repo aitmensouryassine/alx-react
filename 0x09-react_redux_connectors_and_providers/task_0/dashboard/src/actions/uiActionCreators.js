@@ -45,21 +45,24 @@ function loginFailure() {
   };
 }
 
-const boundLogin = (email, password) => (dispatch) => dispatch(login(email, password));
+const boundLogin = (email, password) => dispatch(login(email, password));
 const boundLogout = () => dispatch(logout());
 const boundDisplayNotificationDrawer = () => dispatch(displayNotificationDrawer());
 const boundHideNotificationDrawer = () => dispatch(hideNotificationDrawer());
 
-function loginRequest(email, password) {
-  return (dispatch) => {
-    boundLogin(email, password);
+const loginRequest = (email, password) => {
+  return async (dispatch) => {
+    try {
+      boundLogin(email, password);
 
-    return fetch('/login-success.json')
-      .then((res) => res.json())
-      .then((json) => dispatch(loginSuccess()))
-      .catch((error) => dispatch(loginFailure()));
+      const response = await fetch('/login-success.json');
+      const data = await response.json();
+      return dispatch(loginSuccess);
+    } catch (err) {
+      return dispatch(loginFailure);
+    }
   };
-}
+};
 
 export {
   login,

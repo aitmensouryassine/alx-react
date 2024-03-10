@@ -50,16 +50,15 @@ const boundLogout = () => dispatch(logout());
 const boundDisplayNotificationDrawer = () => dispatch(displayNotificationDrawer());
 const boundHideNotificationDrawer = () => dispatch(hideNotificationDrawer());
 
-function loginRequest(email, password) {
-  return (dispatch) => {
-    boundLogin(email, password);
+const loginRequest = (email, password) => (dispatch) => {
+  dispatch(login(email, password));
 
-    return fetch('/login-success.json')
-      .then((res) => res.json())
-      .then((json) => dispatch(loginSuccess()))
-      .catch((error) => dispatch(loginFailure()));
-  };
-}
+  const baseURL = 'http://localhost:8080';
+  return fetch(new URL('/login-success.json', baseURL))
+    .then((res) => res.json())
+    .then((data) => dispatch(loginSuccess()))
+    .catch((error) => dispatch(loginFailure()));
+};
 
 export {
   login,
